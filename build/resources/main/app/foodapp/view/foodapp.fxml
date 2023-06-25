@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane fx:id="app" minHeight="-Infinity" minWidth="-Infinity" prefHeight="651.0" prefWidth="1076.0" style="-fx-background-color: DAD1F7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="foodapp.controller.FoodAppController">
+   <children>
+      <VBox layoutX="19.0" layoutY="102.0" prefHeight="448.0" prefWidth="155.0" spacing="35.0" style="-fx-background-color: E1D9FB; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); -fx-background-radius: 8px;">
+         <children>
+            <ImageView fitHeight="55.0" fitWidth="72.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/fork.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="50.0" top="40.0" />
+               </VBox.margin>
+               <effect>
+                  <Glow />
+               </effect>
+            </ImageView>
+            <Button graphicTextGap="15.0" mnemonicParsing="false" onAction="#Homebtn" prefHeight="48.0" prefWidth="135.0" styleClass="homebtn" text="Home">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/home.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button graphicTextGap="0.0" mnemonicParsing="false" onAction="#showFavorite" prefHeight="44.0" prefWidth="134.0" styleClass="homebtn" text="    Favourite">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/star.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button graphicTextGap="20.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="138.0" styleClass="homebtn" text="About us">
+               <VBox.margin>
+                  <Insets left="10.0" top="20.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="Georgia Italic" size="14.0" />
+               </font>
+               <effect>
+                  <Glow />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/user.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children></VBox>
+      <Pane fx:id="Sortpane" layoutX="954.0" layoutY="102.0" prefHeight="156.0" prefWidth="108.0" style="-fx-background-color: E1D9FB; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); -fx-background-radius: 8px;">
+         <children>
+            <Label layoutX="23.0" layoutY="14.0" text="Sorted By">
+               <font>
+                  <Font name="Georgia" size="16.0" />
+               </font>
+               <effect>
+                  <Glow level="0.12" />
+               </effect></Label>
+            <VBox layoutX="21.0" layoutY="49.0" prefHeight="90.0" prefWidth="87.0" spacing="10.0">
+               <children>
+                  <CheckBox fx:id="checkBoxpop" mnemonicParsing="false" onAction="#sortbypopoularity" text="Popularity">
+                     <font>
+                        <Font name="Georgia" size="10.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="checkBoxTime" mnemonicParsing="false" onAction="#sortByTime" text="Time">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="checkBoxhealthy" mnemonicParsing="false" onAction="#sortByHealth" text="healthy">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </CheckBox>
+                  <CheckBox fx:id="checkBoxprice" mnemonicParsing="false" onAction="#sortByPrice" text="price">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </CheckBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <ScrollPane fx:id="scroll1" hbarPolicy="NEVER" layoutX="181.0" layoutY="40.0" prefHeight="569.0" prefWidth="764.0" styleClass="sc" vbarPolicy="NEVER">
+         <content>
+            <VBox onScroll="#checkv" prefHeight="569.0" prefWidth="765.0" spacing="10.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="238.0" prefWidth="756.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="219.0" prefWidth="756.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fitHeight="118.0" fitWidth="201.0" layoutX="50.0" layoutY="-11.0" opacity="0.4" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@img/60-601818_download-violet-clouds-png-clipart.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="85.0" fitWidth="84.0" layoutX="-10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/chef.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="66.0" layoutY="14.0" prefHeight="55.0" prefWidth="168.0" text="Welcome &#10;   to recipoo !" textFill="#000000bd">
+                                 <font>
+                                    <Font name="Georgia Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="492.0" layoutY="30.0" mnemonicParsing="false" onAction="#globalsearch" prefHeight="22.0" prefWidth="38.0" styleClass="searchbtn" stylesheets="@style.css">
+                                 <graphic>
+                                    <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="searchbtn">
+                                       <image>
+                                          <Image url="@img/search.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                              <AnchorPane fx:id="searchAnchor" layoutX="311.0" layoutY="32.0" prefWidth="149.0" scaleX="0.0">
+                                 <children>
+                                    <TextField fx:id="textField" prefHeight="35.0" prefWidth="172.0" promptText="Search..." style="-fx-background-radius: 12px; -fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 12px;" />
+                                    <Button fx:id="closesearchbtn" contentDisplay="CENTER" layoutX="149.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#stopsearching" prefHeight="15.0" prefWidth="18.0" styleClass="searchbtn" text="Button">
+                                       <graphic>
+                                          <ImageView fitHeight="10.0" fitWidth="9.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@img/marque-x.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </AnchorPane>
+                              <HBox alignment="CENTER" layoutX="-3.0" layoutY="95.0" prefHeight="93.0" prefWidth="757.0" spacing="60.0">
+                                 <children>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#allbtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="82.0" prefWidth="69.0" style="-fx-background-color: white; -fx-background-radius: 25px;" text="All">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="48.0" fitWidth="48.0" pickOnBounds="true" smooth="false">
+                                             <image>
+                                                <Image url="@img/diet.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#burgerbtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="81.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 25px;" text="Burgers">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="44.0" fitWidth="36.0" pickOnBounds="true" smooth="false">
+                                             <image>
+                                                <Image url="@img/burger.png" />
+                                             </image>
+                                             <effect>
+                                                <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                             </effect>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#pizzabtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="79.0" prefWidth="63.0" style="-fx-background-color: white; -fx-background-radius: 25px;" text="Pizza">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="41.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@img/pizza.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#drinkbtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="83.0" prefWidth="62.0" style="-fx-background-color: white; -fx-background-radius: 25px;" styleClass="zebi" text="Drinks">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="44.0" fitWidth="49.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@img/soda.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#desertbtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="82.0" prefWidth="62.0" style="-fx-background-color: white; -fx-background-radius: 25px;" text="Deserts">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="40.0" fitWidth="41.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@img/cake-slice.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                    <Button alignment="TOP_CENTER" contentDisplay="BOTTOM" graphicTextGap="9.0" mnemonicParsing="false" onAction="#saladbtn" onMouseEntered="#insideButton" onMouseExited="#LeaveButton" prefHeight="82.0" prefWidth="61.0" style="-fx-background-color: white; -fx-background-radius: 25px;" text="Salads">
+                                       <font>
+                                          <Font name="Arial Bold" size="11.0" />
+                                       </font>
+                                       <effect>
+                                          <DropShadow height="6.0" radius="2.5" width="6.0" />
+                                       </effect>
+                                       <graphic>
+                                          <ImageView fitHeight="41.0" fitWidth="50.0" pickOnBounds="true">
+                                             <image>
+                                                <Image url="@img/salad.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Label contentDisplay="RIGHT" layoutX="27.0" layoutY="195.0" text="All items">
+                                 <font>
+                                    <Font name="Georgia Bold" size="23.0" />
+                                 </font>
+                                 <graphic>
+                                    <ImageView fitHeight="19.0" fitWidth="21.0" opacity="0.63" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/select.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="mainmenu" alignment="CENTER" prefHeight="200.0" prefWidth="765.0" spacing="10.0" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </VBox>
+         </content>
+         <effect>
+            <DropShadow />
+         </effect>
+      </ScrollPane>
+      <ScrollPane fx:id="scroll2" hbarPolicy="NEVER" layoutX="182.0" layoutY="39.0" prefHeight="569.0" prefWidth="764.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); -fx-background-radius: 70%; -fx-border-radius: 8px;" vbarPolicy="NEVER" visible="false">
+         <content>
+            <VBox prefHeight="552.0" prefWidth="762.0" style="-fx-background-color: white;">
+               <children>
+                  <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="218.0" prefWidth="762.0">
+                     <children>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="237.0" prefWidth="762.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fitHeight="118.0" fitWidth="299.0" layoutX="50.0" layoutY="-11.0" opacity="0.4" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@img/60-601818_download-violet-clouds-png-clipart.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="85.0" fitWidth="84.0" layoutX="-10.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/chef.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="recipeviewname" alignment="TOP_LEFT" ellipsisString="" layoutX="74.0" prefHeight="156.0" prefWidth="262.0" textFill="#000000d0" wrapText="true">
+                                 <font>
+                                    <Font name="Georgia Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Button graphicTextGap="25.0" layoutY="152.0" mnemonicParsing="false" onAction="#goback" prefHeight="34.0" prefWidth="108.0" style="-fx-background-color: none;" text="Back">
+                                 <graphic>
+                                    <ImageView fitHeight="21.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@img/left-arrow.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Georgia" size="14.0" />
+                                 </font>
+                              </Button>
+                              <AnchorPane layoutX="505.0" layoutY="23.0" prefHeight="168.0" prefWidth="222.0">
+                                 <children>
+                                    <HBox alignment="CENTER" layoutY="140.0" prefHeight="28.0" prefWidth="223.0" spacing="30.0">
+                                       <children>
+                                          <Button fx:id="favescroll2" mnemonicParsing="false" prefHeight="28.0" prefWidth="91.0" style="-fx-background-color: none;" text="add">
+                                             <graphic>
+                                                <ImageView fx:id="favimg" fitHeight="20.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@../../../../../../../recetteapplast/src/main/resources/app/foodapp/view/img/save-instagram.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <ImageView fx:id="recipeimg" fitHeight="139.0" fitWidth="192.0" layoutX="11.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+                  <HBox>
+                     <children>
+                        <VBox fx:id="ingredientsview" minWidth="-Infinity" prefWidth="381.0" spacing="10.0" style="-fx-background-color: none;">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox fx:id="requirementsview" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="0.0" prefWidth="368.0" spacing="10.0" style="-fx-background-color: none;" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="favpane" hbarPolicy="NEVER" layoutX="181.0" layoutY="39.0" prefHeight="569.0" prefWidth="764.0" vbarPolicy="NEVER" visible="false">
+         <content>
+            <VBox prefHeight="569.0" prefWidth="763.0" style="-fx-background-color: white;">
+               <children>
+                  <HBox prefHeight="22.0" prefWidth="763.0" style="-fx-background-color: white;">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#backfav" styleClass="homebtn" text="Go back">
+                           <graphic>
+                              <ImageView fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" styleClass="searchbtn">
+                                 <image>
+                                    <Image url="@img/left-arrow.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <VBox fx:id="favview" alignment="TOP_CENTER" prefHeight="339.0" prefWidth="763.0" spacing="10.0" style="-fx-background-color: white;" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <Button fx:id="upbtn" layoutX="980.0" layoutY="550.0" mnemonicParsing="false" onAction="#up" styleClass="searchbtn" visible="false">
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/upload.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <HBox alignment="TOP_RIGHT" layoutX="-1.0" layoutY="-2.0" prefHeight="48.0" prefWidth="1076.0">
+         <children>
+            <Button mnemonicParsing="false" onMouseClicked="#minimize" styleClass="leaveminimizebtn">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/minimize.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#leavebtn" styleClass="leaveminimizebtn">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</Pane>
